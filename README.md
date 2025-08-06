@@ -5,19 +5,22 @@
 ## Архитектура
 
 Процесс взаимодействия с сервисом выглядит следующим образом:
-
-[Пользователь] <---(HTTP запросы)---> [FastAPI API] <--- (BSON) ---> [MongoDB]  
-(curl, Postman, etc.)                    (Python)                  (База данных)
+```
+[Пользователь] <---(HTTP запросы)---> [FastAPI API] <--- (BSON) ---> [MongoDB]
+(curl, Postman, etc.)                   (Python)                   (База данных)
+```
 
 ## Структура проекта
 
+```
 .
-├── docker-compose.yml      # Главный файл, описывающий все сервисы  
-├── fastapi-app/  
-│   ├── Dockerfile          # Dockerfile для сборки образа API  
-│   ├── main.py             # Код FastAPI приложения (CRUD операции)  
-│   └── requirements.txt    # Зависимости для Python-скрипта  
+├── docker-compose.yml      # Главный файл, описывающий все сервисы
+├── fastapi-app/
+│   ├── Dockerfile          # Dockerfile для сборки образа API
+│   ├── main.py             # Код FastAPI приложения (CRUD операции)
+│   └── requirements.txt    # Зависимости для Python-скрипта
 └── README.md               # Этот файл
+```
 
 ## Сервисы
 
