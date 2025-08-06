@@ -1,0 +1,24 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+
+  fastapi-app:
+    build: ./fastapi
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    environment:
+      - DATABASE_URL=mongodb://root:example@mongodb:27017/
+
+volumes:
+  mongo_data:
