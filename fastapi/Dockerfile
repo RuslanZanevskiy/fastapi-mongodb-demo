@@ -8,11 +8,13 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Устанавливаем зависимости
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --default-timeout=30 --no-cache-dir -r requirements.txt
 
 # Копируем остальной код приложения
 COPY . .
 
-# Указываем команду для запуска приложения
-# uvicorn будет запущен на 0.0.0.0, чтобы быть доступным извне контейнера
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Даем права на выполнение нашему стартовому скрипту
+RUN chmod +x ./start.sh
+
+# Указываем стартовый скрипт как команду по умолчанию
+CMD ["./start.sh"]
